@@ -24,7 +24,7 @@ Example usage of SickOwn is:
     optional arguments:
     -h, --help  show this help message and exit
 
-## SickSpolit
+## SickSploit
 
 Sicksploit is a tool to provide a POC exploit for an open instance of Sickrage.
 The exploit is easy and relies on a vulnerable feature. This vulnerabilities has been reported on 15th December to the maintainer of SickChill (the fork on which all the tests have been performed).
