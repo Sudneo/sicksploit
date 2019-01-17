@@ -47,8 +47,6 @@ def check_target(target, outfile):
         return False
 
 
-
-
 def main():
     # Get arguments - shodan API
     args = get_args()
