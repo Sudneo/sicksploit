@@ -38,7 +38,7 @@ def check_target(target, outfile):
             return False
         else:
             print "[+] Request succeeded. http://%s:%s is up." % (target['ip'], target['port'])
-            with open(outfile, "wa") as fp:
+            with open(outfile, "a") as fp:
                 fp.write("%s:%s\n" % (target['ip'], target['port']))
             fp.close()
             return True
