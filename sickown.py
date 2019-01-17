@@ -25,7 +25,7 @@ def find_targets(api):
 def test_targets(target_queue, result_list):
     while not target_queue.empty():
         target = target_queue.get()
-        if check_target(target):
+        if check_target(target, "sicklist.txt"):
             result_list.append(target)
 
 
