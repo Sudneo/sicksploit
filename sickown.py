@@ -4,8 +4,6 @@ import Queue
 import threading
 import argparse
 
-api = None
-
 
 def get_args():
     parser = argparse.ArgumentParser(description="Use Shodan.io to track down vulnerable instances of SickChill/Rage")
@@ -14,7 +12,7 @@ def get_args():
     return args
 
 
-def find_targets():
+def find_targets(api):
     print "[+] Looking for targets using Shodan API."
     query = "Server: TornadoServer and Location: /home"
     print "[+] Query = %s" % query
@@ -47,7 +45,7 @@ def main():
     args = get_args()
     api = Shodan(args.API_KEY)
     # Query shodan and find targets
-    raw_targets = find_targets()
+    raw_targets = find_targets(api)
     print "[+] Found %s targets." % raw_targets.qsize()
     # Now let's query post processing configuration to remove false positives.
     verified_targets = []

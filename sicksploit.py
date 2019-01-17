@@ -90,7 +90,7 @@ def trigger_post_processing(base_url, process_dir):
     url = "%s/home/postprocess/processEpisode" % base_url
     response = requests.post(url, data=params)
     if response.status_code != 200:
-        print "[-] Error in triggering post processing. Exploit might still succeed, auto post processing every 10m."
+        print "[-] Error in triggering post processing. Exploit might still succeed, auto post processing might be on."
     else:
         print "[+] Manual post processing correctly scheduled. It might take a few minutes to actually get executed."
 
