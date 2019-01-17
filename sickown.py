@@ -29,15 +29,24 @@ def test_targets(target_queue, result_list):
             result_list.append(target)
 
 
-def check_target(target):
+def check_target(target, outfile):
     url = "http://%s:%s/config/postProcessing/" % (target['ip'], target['port'])
-    response = requests.get(url)
-    if response.status_code != 200:
+    try:
+        response = requests.get(url)
+        if response.status_code != 200:
+            print "[-] Request failed. http://%s:%s seems down." % (target['ip'], target['port'])
+            return False
+        else:
+            print "[+] Request succeeded. http://%s:%s is up." % (target['ip'], target['port'])
+            with open(outfile, "wa") as fp:
+                fp.write("%s:%s\n" % (target['ip'], target['port']))
+            fp.close()
+            return True
+    except requests.exceptions.ConnectionError:
         print "[-] Request failed. http://%s:%s seems down." % (target['ip'], target['port'])
         return False
-    else:
-        print "[+] Request succeeded. http://%s:%s is up." % (target['ip'], target['port'])
-        return True
+
+
 
 
 def main():
